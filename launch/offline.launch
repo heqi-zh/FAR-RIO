@@ -1,0 +1,8 @@
+<launch>
+    <!-- Choose NTU_radar.yaml here for NTU; set input.bag_file in the selected YAML. -->
+    <arg name="config_file" default="$(find far_rio)/config/Snail_radar.yaml" />
+    <param name="use_sim_time" value="false" />
+    <node pkg="far_rio" type="run_mapping_offline" name="radarMappingOffline" output="screen">
+        <param name="config_file" value="$(arg config_file)" />
+    </node>
+</launch>

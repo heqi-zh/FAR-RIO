@@ -1,0 +1,11 @@
+FAR-RIO
+Maintainer: Hang Zhen <zhenhangwhu@whu.edu.cn>
+Paper: https://ieeexplore.ieee.org/abstract/document/11474877
+
+This project is derived from Faster-LIO (https://github.com/gaoxiang12/faster-lio),
+which is based on FAST-LIO (https://github.com/hku-mars/FAST_LIO).
+Original author and copyright notices are retained in the source files.
+
+FAR-RIO is distributed under the GNU General Public License, version 2.
+See LICENSE for the full license text. Bundled third-party code retains its
+original notices and applicable license terms.

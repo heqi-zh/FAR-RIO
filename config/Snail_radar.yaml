@@ -1,0 +1,63 @@
+input:
+    bag_file: ""                 # Offline input: set your bag path here.
+
+output:
+    directory: "../output"       # Relative paths are resolved from this YAML file.
+
+common:
+    radar_topic:  "/ars548"
+    imu_topic:  "/x36d/imu_raw"
+    
+preprocess:
+    radar_type: 4                # Radar format: 4 for Snail, 5 for NTU
+
+mapping:
+    acc_cov: 0.008
+    gyr_cov: 0.000055
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.000002
+    fov_degree:    180
+    det_range:     300.0
+    extrinsic_est_en:  true      # true: enable the online estimation of IMU-Radar extrinsic
+    extrinsic_T: [ 0, 0, 0]
+    extrinsic_R: [0.998861908053375,0.0445688670331839,-0.0169854270287433,
+        -0.0445188967507348,0.999003062288094,0.00330898339477966,
+        0.0171159712569224,-0.0025490449952668,0.999850261737998]
+                   
+    # extrinsic_T_ri : [
+    # extrinsic_R: [ 0.99912647794293, 0.039117559886893, -0.0147002578838332,
+    #     -0.0390210149947843, 0.999215265264576, 0.00679809171902766,
+    #     0.0149546468407877, -0.00621853445265288, 0.999868835581512]
+
+publish:
+    path_publish_en:  false
+    scan_publish_en:  true       # false: close all the point cloud output
+    scan_effect_pub_en: true    # true: publish the pointscloud of effect point
+    dense_publish_en: false       # false: low down the points number in a global-frame point clouds scan.
+    scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+
+path_save_en: true
+
+pcd_save:
+    pcd_save_en: true
+    interval: -1                 # how many radar frames saved in each pcd file; 
+                                 # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.
+max_iteration: 8
+filter_size_surf: 0.5
+filter_size_map: 0.5             # 暂时未用到，代码中为0， 即倾向于将降采样后的scan中的所有点加入map
+cube_side_length: 1000
+
+ivox_grid_resolution: 1        # default=0.2
+ivox_nearby_type: 6             # 6, 18, 26
+esti_plane_threshold: 0.2        # default=0.1
+
+keyframe:
+    #keyframe_enable: true
+    keyframe_distance: 0.5
+    keyframe_rotation: 0.25
+    keyframe_roll: 0.1
+    keyframe_pitch: 0.1
+    keyframe_yaw: 0.1
+    keyframe_all: true
+    keyframe_none: false
+    all_scan_matching: false

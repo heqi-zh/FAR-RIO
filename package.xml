@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<package>
+    <name>far_rio</name>
+    <version>0.0.0</version>
+
+    <description>
+        FAR-RIO: A Fast and Robust Radar-Inertial Odometry with Isotropic Uncertainty Model
+        and Dual-Observation Update Pipeline.
+    </description>
+
+    <maintainer email="zhenhangwhu@whu.edu.cn">Hang Zhen</maintainer>
+
+    <license>GPL-2.0-only</license>
+
+    <author email="zhenhangwhu@whu.edu.cn">Hang Zhen</author>
+    <!-- Upstream framework contributor. -->
+    <author email="gao.xiang.thu@gmail.com">Gao Xiang</author>
+
+    <url type="repository">https://github.com/heqi-zh/FAR-RIO</url>
+    <url type="website">https://ieeexplore.ieee.org/abstract/document/11474877</url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>geometry_msgs</build_depend>
+    <build_depend>nav_msgs</build_depend>
+    <build_depend>roscpp</build_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>std_msgs</build_depend>
+    <build_depend>sensor_msgs</build_depend>
+    <build_depend>tf</build_depend>
+    <build_depend>pcl_ros</build_depend>
+    <build_depend>message_generation</build_depend>
+    <build_depend>eigen_conversions</build_depend>
+    <build_depend>rosbag</build_depend>
+    <build_depend>libgoogle-glog-dev</build_depend>
+
+    <run_depend>geometry_msgs</run_depend>
+    <run_depend>nav_msgs</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+    <run_depend>roscpp</run_depend>
+    <run_depend>rospy</run_depend>
+    <run_depend>std_msgs</run_depend>
+    <run_depend>tf</run_depend>
+    <run_depend>pcl_ros</run_depend>
+    <run_depend>message_runtime</run_depend>
+    <run_depend>eigen_conversions</run_depend>
+    <run_depend>rosbag</run_depend>
+    <run_depend>libgoogle-glog-dev</run_depend>
+
+    <test_depend>rostest</test_depend>
+
+    <export>
+    </export>
+</package>
