@@ -1,29 +1,15 @@
 <a name="top"></a>
 
-<h1 align="center">📡 FAR-RIO</h1>
+# FAR-RIO
 
-<p align="center">
-  <strong>A Fast and Robust Radar-Inertial Odometry</strong><br>
-  Isotropic Uncertainty Model · Dual-Observation Update Pipeline
-</p>
+**A Fast and Robust Radar-Inertial Odometry**
 
-<p align="center">
-  Hang Zhen · Zhi Gao · Ronghe Jin · Xinyu Guo · Feng Lin<br>
-  <strong>IEEE Robotics and Automation Letters · 2026</strong>
-</p>
+[![Paper](https://img.shields.io/badge/IEEE_RA--L-2026-b31b1b)](https://ieeexplore.ieee.org/abstract/document/11474877)
+[![ROS](https://img.shields.io/badge/ROS-Noetic-22314E)](#installation)
+[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C)](#installation)
+[![License](https://img.shields.io/badge/License-GPL_v2-1f6feb)](LICENSE)
 
-<p align="center">
-  <a href="https://ieeexplore.ieee.org/abstract/document/11474877">📄 Paper</a> &nbsp;·&nbsp;
-  <a href="#installation">🛠️ Installation</a> &nbsp;·&nbsp;
-  <a href="#configuration">⚙️ Configuration</a> &nbsp;·&nbsp;
-  <a href="#run">🚀 Run</a> &nbsp;·&nbsp;
-  <a href="#citation">📚 Citation</a>
-</p>
-
-<p align="center">
-  <code>4D Radar + IMU</code> &nbsp; <code>ROS Noetic</code> &nbsp;
-  <code>C++17</code> &nbsp; <a href="LICENSE">GPL v2</a>
-</p>
+[🛠️ Installation](#installation) · [⚙️ Configuration](#configuration) · [🚀 Run](#run) · [📚 Citation](#citation)
 
 ---
 
@@ -267,4 +253,4 @@ FAR-RIO is distributed under **GNU GPL v2** (`GPL-2.0-only`). See [LICENSE](LICE
 
 Hang Zhen — [zhenhangwhu@whu.edu.cn](mailto:zhenhangwhu@whu.edu.cn).
 
-<p align="center"><a href="#top">↑ Back to top</a></p>
+[↑ Back to top](#top)
