@@ -4,10 +4,10 @@
 
 **A Fast and Robust Radar-Inertial Odometry**
 
-[![Paper](https://img.shields.io/badge/IEEE_RA--L-2026-b31b1b)](https://ieeexplore.ieee.org/abstract/document/11474877)
-[![ROS](https://img.shields.io/badge/ROS-Noetic-22314E)](#installation)
-[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C)](#installation)
-[![License](https://img.shields.io/badge/License-GPL_v2-1f6feb)](LICENSE)
+[![Paper](https://img.shields.io/badge/IEEE_RA--L-2026-00629B?logo=ieee&logoColor=white)](https://ieeexplore.ieee.org/abstract/document/11474877)
+[![ROS](https://img.shields.io/badge/ROS-Noetic-22314E?logo=ros&logoColor=white)](#installation)
+[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](#installation)
+[![License](https://img.shields.io/badge/License-GPL_v2-A42E2B?logo=gnu&logoColor=white)](LICENSE)
 
 [🛠️ Installation](#installation) · [⚙️ Configuration](#configuration) · [🚀 Run](#run) · [📚 Citation](#citation)
 
