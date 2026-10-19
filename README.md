@@ -1,14 +1,45 @@
-# FAR-RIO
+<a name="top"></a>
 
-**A Fast and Robust Radar-Inertial Odometry with Isotropic Uncertainty Model and Dual-Observation Update Pipeline**
+<h1 align="center">📡 FAR-RIO</h1>
 
-[Paper](https://ieeexplore.ieee.org/abstract/document/11474877) · [Installation](#installation) · [Configuration](#configuration) · [Run](#run) · [License](#license)
+<p align="center">
+  <strong>A Fast and Robust Radar-Inertial Odometry</strong><br>
+  Isotropic Uncertainty Model · Dual-Observation Update Pipeline
+</p>
 
-FAR-RIO is the official implementation of the paper linked above. It estimates motion from 4D radar point clouds, Doppler measurements, and IMU data. The method combines dynamic point filtering, an isotropic uncertainty model for registration, and a dual-observation update pipeline with keyframe selection.
+<p align="center">
+  Hang Zhen · Zhi Gao · Ronghe Jin · Xinyu Guo · Feng Lin<br>
+  <strong>IEEE Robotics and Automation Letters · 2026</strong>
+</p>
 
-The ROS package and C++ namespace are both named `far_rio`. This repository includes radar input adapters for **Snail** and **NTU**.
+<p align="center">
+  <a href="https://ieeexplore.ieee.org/abstract/document/11474877">📄 Paper</a> &nbsp;·&nbsp;
+  <a href="#installation">🛠️ Installation</a> &nbsp;·&nbsp;
+  <a href="#configuration">⚙️ Configuration</a> &nbsp;·&nbsp;
+  <a href="#run">🚀 Run</a> &nbsp;·&nbsp;
+  <a href="#citation">📚 Citation</a>
+</p>
 
-## Installation
+<p align="center">
+  <code>4D Radar + IMU</code> &nbsp; <code>ROS Noetic</code> &nbsp;
+  <code>C++17</code> &nbsp; <a href="LICENSE">GPL v2</a>
+</p>
+
+---
+
+**FAR-RIO** is the official implementation of our radar-inertial odometry method. It estimates motion from 4D radar point clouds, Doppler measurements, and IMU data.
+
+| 🎯 Dynamic point filtering | 📐 Uncertainty modeling | ⚡ Efficient state updates |
+| :--- | :--- | :--- |
+| Uses full covariance propagation to filter dynamic radar returns. | Uses an isotropic uncertainty model for point-cloud registration. | Combines Doppler and geometric observations with keyframe selection. |
+
+The ROS package and C++ namespace are both `far_rio`. Ready-to-edit configurations are provided for **Snail** and **NTU** radar inputs.
+
+---
+
+<a name="installation"></a>
+
+## 🛠️ Installation
 
 ### Dependencies
 
@@ -42,9 +73,18 @@ The default voxel representation can be replaced with PHC voxels at build time:
 catkin_make -DCMAKE_BUILD_TYPE=Release -DWITH_IVOX_NODE_TYPE_PHC=ON
 ```
 
-For an environment that needs the bundled TBB 2018 library, extract `thirdparty/tbb2018_20170726oss_lin.tgz` and pass its extracted directory to CMake using `-DCUSTOM_TBB_DIR=/absolute/path/to/tbb2018_20170726oss`.
+<details>
+<summary><strong>🧰 Optional: use the bundled TBB 2018 library</strong></summary>
 
-## Configuration
+For an environment that needs TBB 2018, extract `thirdparty/tbb2018_20170726oss_lin.tgz` and pass its extracted directory to CMake using `-DCUSTOM_TBB_DIR=/absolute/path/to/tbb2018_20170726oss`.
+
+</details>
+
+---
+
+<a name="configuration"></a>
+
+## ⚙️ Configuration
 
 Choose the YAML file matching your radar message format:
 
@@ -53,7 +93,8 @@ Choose the YAML file matching your radar message format:
 | Snail | [Snail_radar.yaml](config/Snail_radar.yaml) | [Snail.launch](launch/Snail.launch) | `sensor_msgs/PointCloud2` |
 | NTU | [NTU_radar.yaml](config/NTU_radar.yaml) | [NTU.launch](launch/NTU.launch) | `sensor_msgs/PointCloud` |
 
-Both adapters use `sensor_msgs/Imu` for IMU input. Set the radar and IMU topics, sensor extrinsics, and noise parameters in the selected YAML file before running.
+> [!TIP]
+> Choose the adapter matching your message format, then edit its **topics**, **radar-to-IMU calibration**, and **data paths**. Both adapters use `sensor_msgs/Imu` for IMU input.
 
 ### Topics and calibration
 
@@ -97,9 +138,11 @@ output:
 
 For example, set `bag_file` to `"/data/snail/sequence.bag"` or `"../data/sequence.bag"`. YAML paths may be absolute or relative to the directory containing that YAML file. With the supplied configurations, `../output` points to the repository's `output/` directory. Use an absolute output directory if you prefer to save results elsewhere. Output directories are created automatically.
 
-`input.bag_file` is left empty in the repository because it is specific to your machine. It is required only by the offline launch. There are no required command-line path flags.
+> [!NOTE]
+> Set paths in **YAML or launch files**. `input.bag_file` is left empty for you to fill in and is required only for offline processing. No command-line path flags are required.
 
-### Radar message formats
+<details>
+<summary><strong>🔬 Radar message formats and adapter conventions</strong></summary>
 
 The input adapters are implemented in [pointcloud_preprocess.cc](src/pointcloud_preprocess.cc):
 
@@ -108,7 +151,13 @@ The input adapters are implemented in [pointcloud_preprocess.cc](src/pointcloud_
 
 The adapters include dataset-specific Doppler and coordinate conventions. For another radar or message layout, adapt the corresponding parser and calibration. `config/HKUST.yaml` is retained as an inactive reference and has no supported input adapter.
 
-## Run
+</details>
+
+---
+
+<a name="run"></a>
+
+## 🚀 Run
 
 Source `~/catkin_ws/devel/setup.bash` in each terminal before launching.
 
@@ -155,7 +204,11 @@ roslaunch far_rio offline.launch
 
 The offline entry point reads the configured radar and IMU topics directly from the bag. It does not require a separate bag player or publish visualization topics.
 
-## Outputs
+---
+
+<a name="outputs"></a>
+
+## 📂 Outputs
 
 Results are written under `output.directory` when processing finishes. Stop the online node with **Ctrl+C** to finish saving its outputs.
 
@@ -169,22 +222,49 @@ Results are written under `output.directory` when processing finishes. Stop the 
 
 `pcd_save.interval: -1` accumulates the map until shutdown. A positive interval writes a chunk after that many frames. Online ROS outputs include `/Odometry`, `/path`, `/cloud_registered`, `/cloud_registered_body`, and `/cloud_registered_effect_world`; their publication is controlled by the YAML `publish` settings.
 
-## Citation
+---
 
-If you use FAR-RIO in your research, please cite:
+<a name="citation"></a>
 
-**FAR-RIO: A Fast and Robust Radar-Inertial Odometry with Isotropic Uncertainty Model and Dual-Observation Update Pipeline.** [IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/11474877).
+## 📚 Citation
 
-Use the citation export on the paper's IEEE Xplore page for the bibliographic entry.
+If you use FAR-RIO in your research, please cite our [IEEE RA-L paper](https://ieeexplore.ieee.org/abstract/document/11474877):
 
-## Acknowledgements
+```bibtex
+@ARTICLE{FARRIO_RAL26,
+  author={Zhen, Hang and Gao, Zhi and Jin, Ronghe and Guo, Xinyu and Lin, Feng},
+  journal={IEEE Robotics and Automation Letters},
+  title={FAR-RIO: A Fast and Robust Radar-Inertial Odometry With Isotropic Uncertainty Model and Dual-Observation Update Pipeline},
+  year={2026},
+  volume={11},
+  number={6},
+  pages={6975-6982},
+  doi={10.1109/LRA.2026.3681162}
+}
+```
+
+---
+
+<a name="acknowledgements"></a>
+
+## 🙏 Acknowledgements
 
 FAR-RIO builds on [Faster-LIO](https://github.com/gaoxiang12/faster-lio), [FAST-LIO](https://github.com/hku-mars/FAST_LIO), and the bundled [IKFoM toolkit](https://github.com/hku-mars/IKFoM). We thank their authors for making these projects available.
 
-## License
+---
+
+<a name="license"></a>
+
+## 📜 License
 
 FAR-RIO is distributed under **GNU GPL v2** (`GPL-2.0-only`). See [LICENSE](LICENSE) for the full text and [NOTICE](NOTICE) for project and upstream attribution. Bundled third-party code retains its original notices and applicable license terms.
 
-## Contact
+---
+
+<a name="contact"></a>
+
+## ✉️ Contact
 
 Hang Zhen — [zhenhangwhu@whu.edu.cn](mailto:zhenhangwhu@whu.edu.cn).
+
+<p align="center"><a href="#top">↑ Back to top</a></p>
