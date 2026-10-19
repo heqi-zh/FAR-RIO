@@ -1,25 +1,24 @@
 <a name="top"></a>
 
-# FAR-RIO
+<h1 align="center">
+  FAR-RIO: A Fast and Robust Radar-Inertial Odometry<br>
+  With Isotropic Uncertainty Model and Dual-Observation Update Pipeline
+</h1>
 
-**A Fast and Robust Radar-Inertial Odometry**
+<p align="center">
+  <strong>IEEE Robotics and Automation Letters (RA-L) 2026</strong>
+</p>
 
-[![Paper](https://img.shields.io/badge/IEEE_RA--L-2026-00629B?logo=ieee&logoColor=white)](https://ieeexplore.ieee.org/abstract/document/11474877)
-[![ROS](https://img.shields.io/badge/ROS-Noetic-22314E?logo=ros&logoColor=white)](#installation)
-[![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](#installation)
-[![License](https://img.shields.io/badge/License-GPL_v2-A42E2B?logo=gnu&logoColor=white)](LICENSE)
+<p align="center">
+  <a href="https://ieeexplore.ieee.org/abstract/document/11474877"><img src="https://img.shields.io/badge/IEEE_Xplore-Paper-00629B?logo=ieee&amp;logoColor=white" alt="IEEE Xplore Paper"></a>
+  <a href="#installation"><img src="https://img.shields.io/badge/ROS-Noetic-22314E?logo=ros&amp;logoColor=white" alt="ROS Noetic"></a>
+  <a href="#installation"><img src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&amp;logoColor=white" alt="C++17"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL_v2-A42E2B?logo=gnu&amp;logoColor=white" alt="GPL v2 License"></a>
+</p>
+
+**FAR-RIO** is a fast and robust radar-inertial odometry framework for 4D radar. It uses Doppler and spatial measurements to localize under challenging sensing conditions. The method rejects dynamic returns through full covariance propagation and models registration uncertainty isotropically. A dual-observation update for the iterated error-state Kalman filter, together with keyframe selection, lowers computational cost while retaining accuracy. Evaluations with multiple radar sensors show competitive estimation accuracy and faster execution than the compared approaches.
 
 [🛠️ Installation](#installation) · [⚙️ Configuration](#configuration) · [🚀 Run](#run) · [📚 Citation](#citation)
-
----
-
-**FAR-RIO** is the official implementation of our radar-inertial odometry method. It estimates motion from 4D radar point clouds, Doppler measurements, and IMU data.
-
-| 🎯 Dynamic point filtering | 📐 Uncertainty modeling | ⚡ Efficient state updates |
-| :--- | :--- | :--- |
-| Uses full covariance propagation to filter dynamic radar returns. | Uses an isotropic uncertainty model for point-cloud registration. | Combines Doppler and geometric observations with keyframe selection. |
-
-The ROS package and C++ namespace are both `far_rio`. Ready-to-edit configurations are provided for **Snail** and **NTU** radar inputs.
 
 ---
 
